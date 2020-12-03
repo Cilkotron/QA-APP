@@ -18,7 +18,6 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-
     /**
      * The attributes that are mass assignable.
      *
@@ -59,10 +58,4 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-
-    public function questions() {
-        return $this->hasMany(Question::class);
-    }
-
-
 }
