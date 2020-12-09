@@ -10,7 +10,7 @@ class Question extends Model
 {
     use HasFactory;
 
-    protected $filliable = ['title', 'body'];
+    protected $fillable = ['title', 'body', 'slug'];
 
     public function user() {
         return $this->belongsTo(User::class);
@@ -33,15 +33,13 @@ class Question extends Model
 
     public function getStatusAttribute()
     {
-        if ($this->answers > 0) {
-            if ($this->best_answer_id) {
+        if($this->answers > 0) {
+            if($this->best_answer_id) {
                 return "answered-accepted";
             }
             return "answered";
         }
         return "unanswered";
-
-
     }
 
 

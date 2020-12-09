@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Question;
+use App\Models\Question; 
 use Illuminate\Http\Request;
+use App\Http\Requests\AskQuestionRequest; 
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth; 
 
 class QuestionController extends Controller
 {
@@ -36,11 +39,16 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AskQuestionRequest $request)
     {
-        //
+        $question = new Question();
+        $question->user_id = Auth::id(); 
+        $question->title = $request->title;
+        $question->slug = Str::slug($request->title);
+        $question->body = $request->body; 
+        $question->save(); 
+        return redirect()->route('question.index')->with('success', "Your question has been submitted"); 
     }
-
     /**
      * Display the specified resource.
      *
