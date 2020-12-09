@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Question; 
+use App\Models\Question;
 use Illuminate\Http\Request;
-use App\Http\Requests\AskQuestionRequest; 
+use App\Http\Requests\AskQuestionRequest;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
@@ -42,12 +42,12 @@ class QuestionController extends Controller
     public function store(AskQuestionRequest $request)
     {
         $question = new Question();
-        $question->user_id = Auth::id(); 
+        $question->user_id = Auth::id();
         $question->title = $request->title;
         $question->slug = Str::slug($request->title);
-        $question->body = $request->body; 
-        $question->save(); 
-        return redirect()->route('question.index')->with('success', "Your question has been submitted"); 
+        $question->body = $request->body;
+        $question->save();
+        return redirect()->route('question.index')->with('success', "Your question has been submitted");
     }
     /**
      * Display the specified resource.
@@ -57,7 +57,7 @@ class QuestionController extends Controller
      */
     public function show(Question $question)
     {
-
+        //
     }
 
     /**
@@ -68,7 +68,7 @@ class QuestionController extends Controller
      */
     public function edit(Question $question)
     {
-        //
+        return view('question.edit', compact('question'));
     }
 
     /**
@@ -78,9 +78,10 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(AskQuestionRequest $request, Question $question)
     {
-        //
+        $question->update($request->only('title', 'body'));
+        return redirect()->route('question.index')->with('success', "Your question has been updated");
     }
 
     /**
