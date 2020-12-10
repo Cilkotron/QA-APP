@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,7 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('/question', 'QuestionController');
+Route::resource('question', 'QuestionController')->except('show');
+Route::get('/question/{slug}', 'QuestionController@show')->name('question.show');
+
 
 
 

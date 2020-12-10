@@ -19,6 +19,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.1",
         "livewire/livewire": "^2.0",
+        "parsedown/laravel": "^1.2",
         "tightenco/ziggy": "^0.9.4"
     },
     "require-dev": {
