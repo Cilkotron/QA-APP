@@ -50,10 +50,11 @@
             </div>
         </div>
     </div>
-    @include('answer._index', [
+    @include ('answer._index', [
         'answers' => $question->answers,
         'answersCount' => $question->answers_count,
     ])
 
+    @include('answer._create')
 </div>
 @endsection
