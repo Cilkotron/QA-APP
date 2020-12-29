@@ -34,10 +34,16 @@ class Answer extends Model
         parent::boot();
         static::created(function($answer) {
             $answer->question->increment('answers_count');
-            $answer->question->save();
+            // $answer->question->save();
         });
         static::deleted(function ($answer) {
-            $answer->question->decrement('answers_count');
+            // $answer->question->decrement('answers_count');
+            $question = $answer->question;
+            $question->decrement('answers_count');
+            if ($question->best_answer_id === $answer->id) {
+                $question->best_answer_id = NULL;
+                $question->save();
+            }
         });
     }
 
@@ -45,8 +51,20 @@ class Answer extends Model
     {
         return $this->created_at->diffForHumans();
     }
+    
     public function getStatusAttribute()
     {
-        return $this->id === $this->question->best_answer_id ? 'vote-accepted' : '';
+        return $this->isBest ? 'vote-accepted' : '';
     }
+
+    public function getIsBestAttribute()
+    {
+        return $this->isBest(); 
+    }
+
+    public function isBest()
+    {
+        return $this->id === $this->question->best_answer_id; 
+    }
+
 }
