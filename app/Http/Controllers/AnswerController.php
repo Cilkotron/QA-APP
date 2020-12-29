@@ -6,6 +6,7 @@ use App\Models\Answer;
 use App\Models\Question;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AnswerController extends Controller
 {
@@ -20,9 +21,16 @@ class AnswerController extends Controller
      */
     public function store(Question $question, Request $request)
     {
+
+        /*
         $request->validate([
             'body' => 'required'
         ]);
+        */
+        Validator::make($request->all(), [
+            'body' => 'required',
+        ])->validate();
+        
         $question->answers()->create([
             'body' => $request->body,
             'user_id' => Auth::id()

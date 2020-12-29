@@ -30,6 +30,8 @@ class CreateQuestionsTable extends Migration
 
         });
     }
+    // unsignedIneger
+    // unsignedInteger
 
     /**
      * Reverse the migrations.
