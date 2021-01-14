@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use App\Http\Traits\VotableTrait;
+use Purifier;
+
 
 
 class Question extends Model
@@ -47,7 +49,7 @@ class Question extends Model
 
     public function getBodyHtmlAttribute()
     {
-        return \Parsedown::instance()->text($this->body);
+        return Purifier::clean($this->bodyHtml());
     }
 
     public function answers()
@@ -76,6 +78,20 @@ class Question extends Model
     public function getFavoritesCountAttribute()
     {
         return $this->favorites()->count();
+    }
+
+    public function getExcerptAttribute()
+    {
+        return $this->excerpt(250);
+    }
+    public function excerpt($lenght)
+    {
+        return str_limit(strip_tags($this->bodyHtml()), $lenght);
+    }
+
+    private function bodyHtml()
+    {
+        return \Parsedown::instance()->text($this->body);
     }
 
 }

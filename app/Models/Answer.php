@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\VotableTrait;
+use Purifier;
 
 class Answer extends Model
 {
@@ -28,7 +29,7 @@ class Answer extends Model
 
     public function getBodyHtmlAttribute()
     {
-        return \Parsedown::instance()->text($this->body);
+        return Purifier::clean(\Parsedown::instance()->text($this->body));
     }
 
     public static function boot()
