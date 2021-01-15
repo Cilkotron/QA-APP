@@ -13,12 +13,12 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'QuestionController@index')->name('question.index');
+Route::group(['prefix' => 'user', 'middleware'=>['auth']], function() {
+    Route::get('question', 'QuestionController@create')->name('question.create');
 });
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/question', [App\Http\Controllers\HomeController::class, 'index'])->name('question');
 
 Route::resource('question', 'QuestionController')->except('show');
 Route::resource('question.answer', 'AnswerController')->except(['index', 'create', 'show']);

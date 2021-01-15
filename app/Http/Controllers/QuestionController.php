@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AskQuestionRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
+// use Illuminate\Support\Facades\Gate;
 
 class QuestionController extends Controller
 {
@@ -31,7 +31,11 @@ class QuestionController extends Controller
     public function create()
     {
         $question = new Question();
+        if(!Auth::user()) {
+            return view('auth.login');
+        }
         return view('question.create', compact('question'));
+
     }
 
     /**

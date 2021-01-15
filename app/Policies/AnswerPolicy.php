@@ -24,14 +24,7 @@ class AnswerPolicy
         return $user->id === $answer->user_id;
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Answer  $answer
-     * @return mixed
-     */
-    public function delete(User $user, Answer $answer)
+        public function delete(User $user, Answer $answer)
     {
         return $user->id === $answer->user_id;
     }

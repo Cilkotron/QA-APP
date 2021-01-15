@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use App\Http\Traits\VotableTrait;
-use Purifier;
+// use Purifier;
 
 
 
@@ -49,12 +49,12 @@ class Question extends Model
 
     public function getBodyHtmlAttribute()
     {
-        return Purifier::clean($this->bodyHtml());
+        return clean($this->bodyHtml());
     }
 
     public function answers()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Answer::class)->orderBy('votes_count', 'DESC');
     }
 
     public function acceptBestAnswer(Answer $answer)
