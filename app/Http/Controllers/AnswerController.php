@@ -81,10 +81,15 @@ class AnswerController extends Controller
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question, Answer $answer)
+    public function destroy(Answer $answer)
     {
         $this->authorize('delete', $answer);
         $answer->delete();
+        if(request()->expectsJson()) {
+            return response()->json([
+                'message' => 'Your answer has been deleted'
+            ]);
+        }
         return back()->with('success', 'Your answer has been deleted');
     }
 }
