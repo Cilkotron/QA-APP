@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="card-title">
-                        <h1>Editing Answer for questioн {{  $question->title }}</h1>
+                        <h1>Editing Answer for question:<b>{{ $question->title }}</b></h1>
                     </div>
                     <hr>
                 <form action="{{ route('question.answer.update', [$question->id, $answer->id]) }}" method="post">

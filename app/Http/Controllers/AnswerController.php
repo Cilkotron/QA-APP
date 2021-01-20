@@ -30,7 +30,7 @@ class AnswerController extends Controller
         Validator::make($request->all(), [
             'body' => 'required',
         ])->validate();
-        
+
         $question->answers()->create([
             'body' => $request->body,
             'user_id' => Auth::id()
@@ -65,6 +65,13 @@ class AnswerController extends Controller
         $answer->update($request->validate([
             'body' => 'required',
         ]));
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Your answer has been updated',
+                'body_html' => $answer->body_html
+            ]);
+        }
         return redirect()->route('question.show', $question->slug)->with('success', 'Your answer has been updated');
     }
 
