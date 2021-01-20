@@ -10980,3 +10980,15 @@ form.form-delete {
   color: #38c172;
 }
 
+.vote-controls .post {
+  padding: 20px 0;
+}
+
+.vote-controls .post:not(:last-child) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.vote-controls [v-cloak] {
+  display: none;
+}
+

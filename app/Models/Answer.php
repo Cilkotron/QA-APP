@@ -12,11 +12,9 @@ class Answer extends Model
     use HasFactory;
     use VotableTrait;
 
-    protected $fillable = [
-        'body',
-        'user_id'
-    ];
-    protected $appends = ['created_date'];
+    protected $fillable = ['body', 'user_id'];
+
+    protected $appends = ['created_date', 'body_html', 'is_best'];
 
     public function question()
     {
@@ -36,30 +34,13 @@ class Answer extends Model
     public static function boot()
     {
         parent::boot();
-        static::created(function($answer) {
+
+        static::created(function ($answer) {
             $answer->question->increment('answers_count');
-            // $answer->question->save();
         });
-<<<<<<< HEAD
-        static::deleted(function ($answer) {
-            // $answer->question->decrement('answers_count');
-            $question = $answer->question;
-            $question->decrement('answers_count');
-            if ($question->best_answer_id === $answer->id) {
-                $question->best_answer_id = NULL;
-                $question->save();
-            }
-=======
 
         static::deleted(function ($answer) {
-            $question = $answer->question;
-            $question->decrement('answers_count');
-            if($question->best_answer_id === $answer->id) {
-                $question->best_answer_id = NULL;
-                $question->save();
-            }
-
->>>>>>> unit-19
+            $answer->question->decrement('answers_count');
         });
     }
 
@@ -70,8 +51,7 @@ class Answer extends Model
 
     public function getStatusAttribute()
     {
-<<<<<<< HEAD
-        return $this->isBest ? 'vote-accepted' : '';
+        return $this->isBest() ? 'vote-accepted' : '';
     }
 
     public function getIsBestAttribute()
@@ -84,8 +64,4 @@ class Answer extends Model
         return $this->id === $this->question->best_answer_id;
     }
 
-=======
-        return $this->id === $this->question->best_answer_id ? 'vote-accepted' : '';
-    }
->>>>>>> unit-19
 }

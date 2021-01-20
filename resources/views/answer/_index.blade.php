@@ -1,5 +1,5 @@
 @if($answersCount > 0 )
-    <div class="row mt-4">
+    <div class="row mt-4" v-cloak>
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -9,6 +9,7 @@
                     <hr>
                     @include('layouts._messages')
                     @foreach($answers as $answer)
+<<<<<<< HEAD
                         <div class="media">
                             <div class="d-flex flex-column vote-controls">
                                 <a title="This answer is useful" class="vote-up {{ Auth::guest() ? 'off' : '' }}" onclick="event.preventDefault(); document.getElementById('up-vote-answer-{{ $answer->id }}').submit();">
@@ -114,6 +115,9 @@
                             </div>
                         </div>
                         <hr>
+=======
+                        @include ('answer._answer')
+>>>>>>> unit-29
                     @endforeach
                 </div>
             </div>
