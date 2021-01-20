@@ -40,6 +40,7 @@ class Answer extends Model
             $answer->question->increment('answers_count');
             // $answer->question->save();
         });
+<<<<<<< HEAD
         static::deleted(function ($answer) {
             // $answer->question->decrement('answers_count');
             $question = $answer->question;
@@ -48,6 +49,17 @@ class Answer extends Model
                 $question->best_answer_id = NULL;
                 $question->save();
             }
+=======
+
+        static::deleted(function ($answer) {
+            $question = $answer->question;
+            $question->decrement('answers_count');
+            if($question->best_answer_id === $answer->id) {
+                $question->best_answer_id = NULL;
+                $question->save();
+            }
+
+>>>>>>> unit-19
         });
     }
 
@@ -58,6 +70,7 @@ class Answer extends Model
 
     public function getStatusAttribute()
     {
+<<<<<<< HEAD
         return $this->isBest ? 'vote-accepted' : '';
     }
 
@@ -71,4 +84,8 @@ class Answer extends Model
         return $this->id === $this->question->best_answer_id;
     }
 
+=======
+        return $this->id === $this->question->best_answer_id ? 'vote-accepted' : '';
+    }
+>>>>>>> unit-19
 }
