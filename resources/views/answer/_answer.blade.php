@@ -1,6 +1,8 @@
 <answer :answer="{{ $answer }}" inline-template>
     <div class="media post">
-        <vote :model="{{ $answer }}" name="answer"></vote>
+        @include ('shared._vote', [
+            'model' => $answer
+        ])
         <div class="media-body">
             <form v-if="editing" @submit.prevent="update" class="mb-3">
                 <div class="form-group">

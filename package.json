@@ -12,7 +12,7 @@
     "devDependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.32",
         "@fortawesome/free-solid-svg-icons": "^5.15.1",
-        "@inertiajs/inertia": "^0.8.2",
+        "@inertiajs/inertia": "^0.3.0",
         "@inertiajs/inertia-vue": "^0.2.4",
         "@tailwindcss/ui": "^0.6.0",
         "alpinejs": "^2.7.3",
@@ -20,6 +20,8 @@
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
         "i": "^0.3.6",
+        "install-peers": "^1.0.3",
+        "izitoast": "^1.4.0",
         "jquery": "^3.2",
         "laravel-jetstream": "^0.0.3",
         "laravel-mix": "^5.0.1",
@@ -37,6 +39,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.1",
-        "fontawesome": "^5.6.3"
+        "fontawesome": "^5.6.3",
+        "vue-izitoast": "^1.2.1"
     }
 }
