@@ -10,13 +10,14 @@ import UserInfo from './components/UserInfo.vue';
 import Answer from './components/Answer.vue';
 import Favorite from './components/Favorite.vue';
 import Accept from './components/Accept.vue';
-
+import Vote from './components/Vote.vue';
 
 
 Vue.component('user-info', UserInfo);
 Vue.component('answer', Answer);
 Vue.component('favorite', Favorite);
 Vue.component('accept', Accept);
+Vue.component('vote', Vote);
 
 import VueIziToast from 'vue-izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
