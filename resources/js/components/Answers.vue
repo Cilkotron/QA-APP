@@ -22,7 +22,6 @@
 
     export default {
         props: ['question'],
-
         data () {
             return {
                 questionId: this.question.id,
@@ -31,11 +30,9 @@
                 nextUrl: null
             }
         },
-
         created () {
             this.fetch(`/question/${this.questionId}/answer`);
         },
-
          methods: {
             fetch (endpoint) {
                 axios.get(endpoint)
@@ -48,15 +45,12 @@
                 this.answers.splice(index, 1);
                 this.count--;
             }
-
         },
-
         computed: {
             title () {
                 return this.count  + " " + (this.count > 1 ? 'Answers' : 'Answer');
             }
         },
-
          components: {
             Answer
         }
