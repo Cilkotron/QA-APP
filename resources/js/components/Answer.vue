@@ -74,14 +74,12 @@
                 id: 'question',
                 zindex: 999,
                 title: 'Hey',
-                position: 'bottomRight',
+                position: 'center',
                 buttons: [
                     ['<button><b>YES</b></button>', (instance, toast) =>  {
                             axios.delete(this.endpoint, {id: this.id })
                             .then(res => {
-                                $(this.$el).fadeOut(500, () => {
-                                    this.$toast.success(res.data.message, "Success", { timeout: 3000});
-                                })
+                                this.$emit('deleted')
                             });
 
                         instance.hide({ transitionOut: 'fadeOut' }, toast, 'button');
