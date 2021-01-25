@@ -7,17 +7,18 @@ require('alpinejs');
 window.Vue = require('vue');
 
 import UserInfo from './components/UserInfo.vue';
-import Answer from './components/Answer.vue';
 import Favorite from './components/Favorite.vue';
 import Accept from './components/Accept.vue';
 import Vote from './components/Vote.vue';
-
+import Answers from './components/Answers.vue';
+import Answer from './components/Answer.vue';
 
 Vue.component('user-info', UserInfo);
-Vue.component('answer', Answer);
 Vue.component('favorite', Favorite);
 Vue.component('accept', Accept);
 Vue.component('vote', Vote);
+Vue.component('answers', Answers);
+Vue.component('answer', Answer);
 
 import VueIziToast from 'vue-izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
