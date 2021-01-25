@@ -20,6 +20,8 @@ Vue.component('vote', Vote);
 Vue.component('answers', Answers);
 Vue.component('answer', Answer);
 
+
+
 import VueIziToast from 'vue-izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import Authorization from './authorization/authorize';
