@@ -102,6 +102,12 @@ class QuestionController extends Controller
         }*/
         $this->authorize("update", $question);
         $question->update($request->only('title', 'body'));
+        if($request->expectsJson()) {
+            return response()->json([
+                'message' => "Your question has been updated", 
+                'body_html' => $question->body_html
+            ]); 
+        }
         return redirect()->route('question.index')->with('success', "Your question has been updated");
     }
 
@@ -113,12 +119,13 @@ class QuestionController extends Controller
      */
     public function destroy(Question $question)
     {
-        /*
-        if(Gate::denies('delete-question', $question)) {
-            abort(403, "Access denied");
-        } */
         $this->authorize("delete", $question);
         $question->delete();
+        if(request()->expectsJson()) {
+            return response()->json([
+                'message' => "Your question has been deleted", 
+            ]); 
+        }
         return redirect()->route('question.index')->with('success', "Your question has been deleted");
     }
 }

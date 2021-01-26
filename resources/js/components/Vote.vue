@@ -14,6 +14,7 @@
         <accept v-else :answer="model"></accept>
     </div>
 </template>
+
 <script>
 import Favorite from './Favorite.vue';
 import Accept from './Accept.vue';
@@ -44,7 +45,7 @@ export default {
     },
 
     methods: {
-        title  (voteType) {
+        title (voteType) {
             let titles = {
                 up: `This ${this.name} is useful`,
                 down: `This ${this.name} is not useful`

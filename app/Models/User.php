@@ -31,6 +31,7 @@ class User extends Authenticatable
         'password',
     ];
 
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -60,6 +61,7 @@ class User extends Authenticatable
     protected $appends = [
         'url', 'avatar'
     ];
+ 
 
     public function questions() {
         return $this->hasMany(Question::class);
@@ -106,15 +108,14 @@ class User extends Authenticatable
     {
         $voteQuestions = $this->voteQuestions();
         return $this->_vote($voteQuestions, $question, $vote);
-
     }
 
     public function voteAnswer(Answer $answer, $vote)
     {
         $voteAnswers = $this->voteAnswers();
         return $this->_vote($voteAnswers, $answer, $vote);
-
     }
+
 
     private function _vote($relationship, $model, $vote)
     {

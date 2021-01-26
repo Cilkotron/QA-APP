@@ -6,20 +6,11 @@ require('alpinejs');
 
 window.Vue = require('vue');
 
-import UserInfo from './components/UserInfo.vue';
-import Favorite from './components/Favorite.vue';
-import Accept from './components/Accept.vue';
-import Vote from './components/Vote.vue';
-import Answers from './components/Answers.vue';
-import Answer from './components/Answer.vue';
 
-Vue.component('user-info', UserInfo);
-Vue.component('favorite', Favorite);
-Vue.component('accept', Accept);
-Vue.component('vote', Vote);
-Vue.component('answers', Answers);
-Vue.component('answer', Answer);
+import QuestionPage from './Pages/QuestionPage.vue';
 
+
+Vue.component('question-page', QuestionPage);
 
 
 import VueIziToast from 'vue-izitoast';
@@ -32,9 +23,5 @@ Vue.use(Authorization);
 
 // Vue.component('user-info', require('./components/UserInfo.vue'));
 const app = new Vue({
-    el: '#app',
-    components: {
-        UserInfo,
-        Answer
-    }
+    el: '#app'
 });
